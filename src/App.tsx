@@ -1,17 +1,16 @@
 import "./App.css";
-import { getCurrentStandings } from "./data/calcs";
+import StandingsChart from "./components/standingsChart/standingsChart";
+import UglyTable from "./components/uglyTable/uglyTable";
+import { getStandings } from "./data/calcs";
 
-const standings = getCurrentStandings("ZakFriends");
+const standings = getStandings("ZakFriends");
 
 function App() {
   return (
     <>
       <h1>Ugly Standings</h1>
-      <div>
-        {standings.map((ps) => (
-          <p key={ps.name}>{`${ps.name}: ${ps.score}`}</p>
-        ))}
-      </div>
+      <UglyTable standings={standings} />
+      <StandingsChart standings={standings} />
     </>
   );
 }
