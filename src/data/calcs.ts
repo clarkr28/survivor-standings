@@ -19,7 +19,7 @@ export function getStandings(groupName: string): PlayerResults[] {
     return [];
   }
 
-  return groupData.map((playerData) => {
+  const results = groupData.map((playerData) => {
     const actualCastawaysLeft = new Set<string>(AllCastaways);
     const guessedCastawaysLeft = new Set<string>(AllCastaways);
 
@@ -51,4 +51,9 @@ export function getStandings(groupName: string): PlayerResults[] {
     };
     return result;
   });
+
+  // sort highest score to lowest score
+  results.sort((a, b) => b.weeklyScore[b.weeklyScore.length - 1] - a.weeklyScore[a.weeklyScore.length - 1]);
+
+  return results;
 }
